@@ -23,10 +23,10 @@ SOFTWARE.*/
 //=======[ Data definitions ]==================================================
 
 const LogLevel = {
-	ERROR: "error",
-	WARN: "warn",
-	INFO: "info",
-	DEBUG: "debug",
+    ERROR: "error",
+    WARN: "warn",
+    INFO: "info",
+    DEBUG: "debug",
 }
 
 //=======[ Settings & Data ]===================================================
@@ -35,7 +35,7 @@ const DEFAULT_LOG_LINES = 50;
 
 //=======[ Utils ]=============================================================
 
-function View_ShowHelp(){
+function View_ShowHelp() {
     // Get the modal
     var modal = document.getElementById("help_modal");
     // Get the button that opens the modal
@@ -60,7 +60,7 @@ function View_ShowHelp(){
 
 
 function View_ShowLogData(log_level, data) {
-    if (!View_IsLogFreeze()){
+    if (!View_IsLogFreeze()) {
         var json_response = JSON.parse(data);
         log_text = Utils_GetLogTextPrefix(log_level) + data;
         document.getElementById("logs_textarea").innerHTML = log_text;
@@ -70,16 +70,16 @@ function View_ShowLogData(log_level, data) {
 
 
 function View_AppendLogData(log_level, data) {
-    if (!View_IsLogFreeze()){
+    if (!View_IsLogFreeze()) {
         let log_lines = Utils_GetElementValue("log_lines");
-        if (Utils_IsInvalidValue(log_lines)){
+        if (Utils_IsInvalidValue(log_lines)) {
             log_lines = DEFAULT_LOG_LINES;
         }
-        current_value = document.getElementById("logs_textarea").value; 
-        if (current_value.split("\n").length-1 >= log_lines){
+        current_value = document.getElementById("logs_textarea").value;
+        if (current_value.split("\n").length - 1 >= log_lines) {
             View_ClearLogData();
             current_value = "";
-        } 
+        }
         log_text = Utils_GetLogTextPrefix(log_level) + data;
         document.getElementById("logs_textarea").innerHTML = log_text + "\n" + current_value;
         View_AdjustLogArea();
@@ -87,7 +87,7 @@ function View_AppendLogData(log_level, data) {
 }
 
 
-function View_ClearLogData(){
+function View_ClearLogData() {
     console.log("Clearing view data")
     document.getElementById("logs_textarea").innerHTML = "";
     View_AdjustLogArea();
@@ -97,34 +97,34 @@ function View_ClearLogData(){
 function View_AdjustLogArea() {
     element = document.getElementById("logs_textarea");
     element.style.height = "15px";
-    element.style.height = (element.scrollHeight)+"px";
+    element.style.height = (element.scrollHeight) + "px";
 }
 
 
-function View_IsLogFreeze(){
+function View_IsLogFreeze() {
     return document.getElementById("log_pause").checked;
 }
 
 
-function View_IsLogTimestampEnabled(){
+function View_IsLogTimestampEnabled() {
     return document.getElementById("log_timestamp").checked;
 }
 
 
-function View_IsLogLevelEnabled(){
+function View_IsLogLevelEnabled() {
     return document.getElementById("log_level").checked;
 }
 
 
-function Utils_GetLogTextPrefix(log_level){
+function Utils_GetLogTextPrefix(log_level) {
     var log_text = "";
-    if (View_IsLogTimestampEnabled()){
+    if (View_IsLogTimestampEnabled()) {
         var now = new Date();
-        log_text = (now.getHours() < 10? "0" + now.getHours(): now.getHours()) + ":";
-        log_text += (now.getMinutes() < 10? "0" + now.getMinutes(): now.getMinutes()) + ":";
-        log_text += (now.getSeconds() < 10? "0" + now.getSeconds(): now.getSeconds()) + " ";
+        log_text = (now.getHours() < 10 ? "0" + now.getHours() : now.getHours()) + ":";
+        log_text += (now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes()) + ":";
+        log_text += (now.getSeconds() < 10 ? "0" + now.getSeconds() : now.getSeconds()) + " ";
     }
-    if (View_IsLogLevelEnabled()){
+    if (View_IsLogLevelEnabled()) {
         switch (log_level) {
             case LogLevel.ERROR:
                 log_text += "[ERROR]";
@@ -142,24 +142,39 @@ function Utils_GetLogTextPrefix(log_level){
                 log_text += "[INFO]";
         }
     }
-    if (log_text != ""){
+    if (log_text != "") {
         log_text += " - ";
     }
     return log_text
 }
 
 
-function Utils_GetElementValue(element_to_get){
+function Utils_GetElementValue(element_to_get) {
     // TODO: Evaluate other element types like checkbox, dropdown, etc.
     return document.getElementById(element_to_get).value;
 }
 
 
-function Utils_IsInvalidValue(value){
-    if (value == null || value == "" || value == "undefined"){
+function Utils_GetCheckboxValue(element_to_get) {
+    return document.getElementById(element_to_get).checked;
+}
+
+
+function Utils_IsInvalidValue(value) {
+    if (value == null || value == "" || value == "undefined") {
         return true;
     }
     return false;
+}
+
+
+function Utils_ConvertStrToJson(str_value) {
+    try {
+        value_dict = str_value ? JSON.parse(str_value) : {};
+        return JSON.stringify(value_dict);
+    } catch (error) {
+        return JSON.stringify({});
+    }
 }
 
 //=======[ End of file ]=======================================================
