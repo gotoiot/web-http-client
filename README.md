@@ -11,6 +11,10 @@ Este proyecto es una aplicación web que se comunica con un servidor `HTTP` atra
 
 Corre sobre cualquier navegador actual y está desarrollado en `JavaScript`, `HTML` y `CSS`. Los estilos son de `Material Design` y la conexión HTTP con la biblioteca `XmlHttpRequest`.
 
+Para que tengas un mejor entendimiento de la aplicación, en esta imagen podés ver una captura del cliente HTTP enviando un request y visualizando la respuesta en la sección de logs.
+
+![HTTP Client Running](doc/http-client-running.png)
+
 ## Instalar las dependencias 🔩
 
 <details><summary><b>Mira cómo instalar las dependencias</b></summary><br>
@@ -42,7 +46,7 @@ Si estas usando otro servidor web accedé a la URL correspondiente; y de manera 
 
 ### Ejecutar un request HTTP
 
-Una vez que accedas a la app tenes que configurar los campos para realizar el request HTTP. Todos los campos tienen valores precargados para no tener que escribirlos cada vez, aunque probablemente necesites cambiar la URL dependiendo el host a donde te envíes los requests.
+Una vez que accedas a la app tenes que configurar los campos para realizar el request HTTP. Todos los campos tienen valores precargados para no tener que escribirlos cada vez, aunque probablemente necesites cambiar la URL dependiendo el host a donde envíes los requests.
 
 Cuando tengas los datos del request presioná el boton `SEND` para enviarlo. Fijate que en la sección de logs aparecen las acciones que vas realizando. 
 
