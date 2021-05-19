@@ -14,7 +14,7 @@
             <nav>
                 <div class="container">
                     <div class="nav-wrapper">
-                        <a href="#!" class="brand-logo left">Web App</a>
+                        <a href="#!" class="brand-logo left">Web HTTP Client</a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li class="active"><a href="#" id="help_link" onclick="return View_ShowHelp();">Help</a></li>
                         </ul>
@@ -24,17 +24,32 @@
             <!-- MAIN APPLICATION VIEW/FIELDS/BUTTONS -->
             <div class="container">
                 <div class="row row-view">
-                    <h5 class="title-view">Application settings</h5>
-                    <div class="col s12 m12 l10 xl10">
-                        <div class="input-field l10 m9 s9">
-                            <input placeholder="Your text" id="demo_text" type="text" class="validate">
-                            <label for="demo_text">Text field demo</label>
-                        </div>
+                    <h5 class="title-view">Requests settings</h5>
+                    <div class="input-field col s12 m12 l9 xl9">
+                        <input placeholder="http://localhost:5000/status" id="request_url" type="text" class="validate">
+                        <label for="request_url">Request URL</label>
                     </div>
-                    <div class="col s5 m5 l2 xl2">
-                        <div class="l2 m3 s3">
-                            <button class="btn waves-effect waves-light button-view" onclick="App_ShowTextInLog();" name="mqtt_subscribe_button">Write</button>
-                        </div>
+                    <div class="input-field col s4 m4 l1 xl1">
+                        <input placeholder="GET" id="request_method" type="text" class="validate">
+                        <label for="request_method">Method</label>
+                    </div>
+                    <div class="input-field col s4 m4 l1 xl1">
+                        <label>
+                          <input type="checkbox" id="poll_checkbox" />
+                            <span>Poll</span>
+                        </label>
+                    </div>
+                    <div class="input-field col s4 m4 l1 xl1">
+                        <input placeholder="10" id="poll_secs" type="text" class="validate">
+                        <label for="poll_secs">Secs</label>
+                    </div>
+                    <div class="input-field col s12 m12 l10 xl10">
+                        <input placeholder="Data in JSON format" id="request_body" type="text" class="validate">
+                        <label for="request_body">Request body (JSON format)</label>
+                    </div>
+                    <div class="col s12 m12 l2 xl2">
+                        <button class="btn waves-effect waves-light button-view" onclick="App_ExcecuteHttpRequest();"
+                            name="mqtt_connect_button">Send</button>
                     </div>
                 </div>
             </div>
