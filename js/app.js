@@ -26,6 +26,8 @@ const DEFAULT_REQUEST_URL    = "http://localhost:5000/status";
 const DEFAULT_REQUEST_METHOD = "GET";
 const DEFAULT_REQUEST_BODY   = "";
 const DEFAULT_POLL_SECS      = 10;
+const DEFAULT_HTTP_USER      = "";
+const DEFAULT_HTTP_PASS      = "";
 
 var HttpHandler     = new XMLHttpRequest();
 var PollReqInterval = null;
@@ -49,6 +51,8 @@ function Http_IsIntervalSet(){
 function Http_GetRequestData(){
     // set default value at first
     let request_url = DEFAULT_REQUEST_URL;
+    let http_user = DEFAULT_HTTP_USER;
+    let http_pass = DEFAULT_HTTP_PASS;
     let request_body = DEFAULT_REQUEST_BODY;
     let request_method = DEFAULT_REQUEST_METHOD;
     let poll_checkbox = Utils_GetCheckboxValue("poll_checkbox");;
@@ -56,6 +60,12 @@ function Http_GetRequestData(){
     // evaluate each value
     if(Utils_GetElementValue("request_url")){
         request_url = Utils_GetElementValue("request_url");
+    }
+    if(Utils_GetElementValue("http_user")){
+        http_user = Utils_GetElementValue("http_user");
+    }
+    if(Utils_GetElementValue("http_pass")){
+        http_pass = Utils_GetElementValue("http_pass");
     }
     if(Utils_GetElementValue("request_body")){
         request_body = Utils_GetElementValue("request_body"); 
@@ -68,6 +78,8 @@ function Http_GetRequestData(){
     }
     return {
         "request_url": request_url,
+        "http_user": http_user,
+        "http_pass": http_pass,
         "request_body": request_body,
         "request_method": request_method,
         "poll_checkbox": poll_checkbox,
@@ -94,7 +106,13 @@ function App_ExcecuteHttpRequest(){
         }
     };
     // prepare request
-    HttpHandler.open(request_data["request_method"], request_data["request_url"], true);
+    HttpHandler.open(
+        request_data["request_method"], 
+        request_data["request_url"], 
+        true,
+        request_data["http_user"], 
+        request_data["http_pass"]
+        );
     HttpHandler.setRequestHeader('Accept', 'application/json');
     HttpHandler.setRequestHeader("Content-type", 'application/json;charset=UTF-8');
     // evaluate methods and execute request

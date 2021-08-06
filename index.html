@@ -6,7 +6,7 @@
         <link href="styles/lib/materialize.css" media="screen,projection" type="text/css" rel="stylesheet" />
         <link href="styles/styles.css" media="screen,projection" type="text/css" rel="stylesheet" />
         <link rel="icon" type="image/png" href="img/favicon.ico" sizes="48x48" />
-        <title>Web Tools | Goto IoT</title>
+        <title>Web HTTP Client | Goto IoT</title>
     </head>
     <body>
         <main>
@@ -25,9 +25,21 @@
             <div class="container">
                 <div class="row row-view">
                     <h5 class="title-view">Requests settings</h5>
-                    <div class="input-field col s12 m12 l9 xl9">
+                    <div class="input-field col s12 m12 l7 xl7">
                         <input placeholder="http://localhost:5000/status" id="request_url" type="text" class="validate">
                         <label for="request_url">Request URL</label>
+                    </div>
+                    <div class="col s12 m12 l1 xl1">
+                        <div class="input-field">
+                            <input placeholder="" placeholder="" id="http_user" type="text" class="validate">
+                            <label for="http_user">User</label>
+                        </div>
+                    </div>
+                    <div class="col s12 m12 l1 xl1">
+                        <div class="input-field">
+                            <input type="password" placeholder="" id="http_pass" type="text" class="validate">
+                            <label for="http_pass">Pass</label>
+                        </div>
                     </div>
                     <div class="input-field col s4 m4 l1 xl1">
                         <input placeholder="GET" id="request_method" type="text" class="validate">
